@@ -15,6 +15,24 @@ def graph_overlapping_lines(x: np.ndarray, y: np.ndarray, legend: List[str],
     """Adds as many traces to the graph as rows in x and y. The x value
     of the trace is given by the corresponding row in x, and the y value is
     given by the corresponding row in y.
+
+    Args:
+        x (np.ndarray): A vector with the x values.
+
+        y (np.ndarray): A vector with the y values.
+
+        legend (List[str]): A list containing the strings to be used in the 
+        legend.
+
+        xaxis_title (str): The title of the x axis.
+
+        yaxis_title (str): The title of the y axis.
+
+        title (str): The title of the graph.
+
+        dirname (str): The folder where we want to save the graph.
+
+        filename (str): The name of the file where we'll save the graph.
     """
     path = os.path.join(dirname, filename)
 
@@ -41,6 +59,21 @@ def graph_2d_markers(x: np.ndarray, y: np.ndarray,
     xaxis_title: str, yaxis_title: str, title: str, 
     dirname: str, filename: str) -> None:
     """Creates a simple 2D plot using markers.
+
+    Args:
+        x (np.ndarray): A vector with the x values.
+
+        y (np.ndarray): A vector with the y values.
+
+        xaxis_title (str): The title of the x axis.
+
+        yaxis_title (str): The title of the y axis.
+
+        title (str): The title of the graph.
+
+        dirname (str): The folder where we want to save the graph.
+
+        filename (str): The name of the file where we'll save the graph.
     """
     path = os.path.join(dirname, filename)
 
