@@ -23,10 +23,11 @@ DATA_FILE = 'data.npz'
 UNCROPPED_WIDTH = 320
 UNCROPPED_HEIGHT = 243
 UNCROPPED_SIZE = UNCROPPED_WIDTH * UNCROPPED_HEIGHT # 77760
+# Number of uncropped images = 165
 CROPPED_WIDTH = 168
 CROPPED_HEIGHT = 192
 CROPPED_SIZE = CROPPED_WIDTH * CROPPED_HEIGHT # 32256
-
+# Number of cropped images = 2414
 
 def preprocess_data() -> None:
     """Downloads and preprocesses data.
@@ -188,14 +189,15 @@ def svd_analysis(x: np.ndarray, image_type: str) -> None:
         _save_image(spatial_mode, filename, image_type)
 
     # Plot the coefficients for the first few spatial modes for all images.
+    # (Just the first 100.)
     x_projected = u.T.dot(x)
     mode_count = 2
     num_images = vh.shape[1]
     images = np.reshape(np.asarray(range(num_images)), (1, num_images))
     legend = [f'Mode {i + 1}' for i in range(mode_count)]
     utils_graph.graph_overlapping_lines(
-        np.repeat(images, mode_count, axis=0),
-        x_projected,
+        np.repeat(images, mode_count, axis=0)[:, :100],
+        x_projected[:, :100],
         legend,
         'Images', 'Coefficient of mode', 
         f'Coefficients of spatial modes for all {image_type} images', 
