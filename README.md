@@ -1,4 +1,4 @@
-# Feature reduction
+# Eigenfaces
 
 *Technologies:* Python, NumPy, Plotly, Scikit-learn, Pillow. <br>
 *Topics:* principal component analysis (PCA), support vector machine (SVM),
@@ -7,14 +7,14 @@ classification. <br>
 ## Description
 
 <p float="left">
-  <img src="docs/reduced_subspace_bands_of_classical_genre.png?raw=true" width="600" />
+  <img src="readme_files/eigenfaces.png?raw=true" width="600" />
 </p>
 
-In this project, I classify 108 music clips from four different genres and three different bands per genre, according to band name and genre. I first create a spectrogram per music clip using a Gabor transform with a Gaussian filter. I then reduce the dimensionality of the spectrograms using SVD and PCA. And last, I classify each clip using my own custom implementation of linear discriminant analysis (LDA). I also classify them using scikit-learn's LDA classification to ensure I'm on the right track.
+In this project, I consider two data sets, one containing images of faces that have been cropped and aligned, and another containing images of faces that have not been aligned. I decompose this data using principal component analysis (PCA), and analyze the energy, coefficients, and visual representation of the data's spatial modes. I notice how the most relevant modes seem to capture changes in the lighting and position of the faces above all.
 
-In my LDA implementation, I solve a generalized eigenvalue problem with the between-class covariance matrix and the within-class covariance matrix. The resulting eigenvectors provide a transformation that maximizes the separation between class centroids while minimizing the variance within classes. I then classify each test point by applying this transformation and finding the closest class centroid. I show how to visualize the process in a 2D plot, using a Voronoi diagram to illustrate the classification boundaries.
+I show how PCA can be used in two applications: image compression and image classification. For the compression scenario, I choose an image from each dataset, and reconstruct it using increasing numbers of modes. The more modes I use, the better the approximation is to the original image. I compare the mean squared error between the original image and an image reconstructed with 50 modes, for each dataset, and conclude that the error is smaller for the cropped images. The cropped images have the face's features well aligned, so it's natural that a better representation would be achieved with the same number of modes.
 
-From my experiments I conclude that LDA is quite effective at classifying audio clips by band name across different genres, and by band name even within a single genre. However, for the data set that I used, LDA struggled to effectively classify audio clips by genre. The results I obtained from my LDA implementation are consistent with results from the scikit-learn implementation.
+For the image classification scenario, I split the data into training and test sets, use PCA to find the 50 most informative modes for the training data, and use those modes as a basis to reduce both training and test data. I then use the support vector machine (SVM) method to classify which subject is photographed in each of the test images. I achieve very high accuracies for both the cropped and uncropped images. I conclude that just a few modes are sufficient to capture the identity of each photo, at least for these small data sets.
 
 You can find more details in the <a href="https://1drv.ms/b/s!AiCY1Uw6PbEfhd57di7RA0VqFnOq4Q?e=oEApsp">report</a> for this project.
 
