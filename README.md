@@ -25,8 +25,16 @@ of my masters in Applied Mathematics.
 
 To run this project:
 
+(Windows)
 ```sh
 conda env create -f environment_win.yml
+conda activate eigenfaces
+python main.py
+```
+
+(MacOS)
+```sh
+conda env create -f environment_mac.yml
 conda activate eigenfaces
 python main.py
 ```
