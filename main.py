@@ -68,10 +68,10 @@ def _recursive_read_cropped(folder: str) -> Tuple[np.ndarray, np.ndarray]:
         elif os.path.isfile(item) and item.endswith('.pgm'):
             try:
                 image = Image.open(item)
-                image = image.getdata()
-                image = np.asarray(image)
-                image = np.reshape(image, (image.shape[0], 1))
-                xc = np.append(xc, image, 1)
+                pixels = image.getdata()
+                array = np.asarray(pixels)
+                array = np.reshape(array, (array.shape[0], 1))
+                xc = np.append(xc, array, 1)
                 parent_dir = os.path.dirname(item)
                 label = parent_dir[-3:]
                 xc_labels = np.append(xc_labels, label)
@@ -85,8 +85,9 @@ def _read_cropped() -> Tuple[np.ndarray, np.ndarray]:
     """
     print('\nReading cropped images.')
     path_cropped = os.path.join(DATA_FOLDER, FOLDER_CROPPED)
-    return _recursive_read_cropped(path_cropped)
+    result = _recursive_read_cropped(path_cropped)
     print('Done reading cropped images.')
+    return result
 
 
 def _read_uncropped() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
